@@ -27,7 +27,7 @@ Base Install
 Download, review, then execute the script:
 
 ```sh
-curl --remote-name https://raw.githubusercontent.com/policygenius/laptop/master/mac.sh
+curl --remote-name https://raw.githubusercontent.com/j-clark/laptop/master/mac.sh
 less mac.sh
 sh mac.sh 2>&1 | tee ~/laptop.log
 ```
@@ -35,7 +35,6 @@ sh mac.sh 2>&1 | tee ~/laptop.log
 In order to ensure consistent Docker environment, it should be downloaded manually from the Docker website.
 
 [Mac Download](https://www.docker.com/docker-mac)
-[Windows Download](https://www.docker.com/docker-windows)
 
 **For OS X Sierra + (10.12+) and XCode 8:**
 
@@ -62,16 +61,6 @@ With Xcode 8.0, when trying to compile the gem you may get the error Project ERR
 
 _For further reading: https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit#macos-sierra-1012_
 
-kutil Install
---------------
-```sh
-pushd /usr/local/bin
-curl --remote-name https://raw.githubusercontent.com/policygenius/laptop/master/kutil.rb
-mv kutil{.rb,}
-chmod +x kutil
-popd
-```
-
 
 Debugging
 ---------
@@ -81,28 +70,6 @@ you can debug the issue yourself. If not, copy the lines where the script
 failed into a [new GitHub
 Issue](https://github.com/policygenius/laptop/issues/new) for us. Or, attach the
 whole log file as an attachment.
-
-PolicyGenius specific tips
---------------------------
-* PG repo
-  * If after installing all dependancies you are getting `Invalid CSS` error in the browser, it might be Node version. Check that you are using `v0.12`.
-* Elasticsearch 5.5.2 issue
-  After running the laptop script, Elasticsearch will be installed as version 5.5.2, which is the current stable version. You may encounter issues when seeding the `policygenius` application related to this Elasticsearch version. If so, you will need to uninstall Elasticsearch and reinstall with version 2.4.
-
-  * Follow the commands at [this gist]( https://gist.github.com/jkubacki/e2dd904bd648b0bd4554 ) for removing Elasticsearch and uninstalling through Homebrew.
-  * Run `ps aux | grep elasticsearch` to ensure that the Elasticsearch process started in the laptop script is not still running. If it is, kill the process with `kill -9 $PID` where `$PID` is the ID for the Elasticsearch process.
-  * Then, run `brew search elasticsearch` to see a current list of Elasticsearch versions and install `elasticsearch@2.4` through Homebrew with `brew install elasticsearch@2.4`.
-  * Once installed, run `brew services start elasticsearch@2.4` and you should be able to seed the database (don't forget to drop, create and migrate if necessary!) properly.
-
-Google Cloud Platform setup
----------------------------
-
-* Log into GCP with the `gcloud` command
-  * `gcloud auth login`
-* Configure `gcloud` to use the sandbox project
-  * `gcloud config set project pg-sandbox-165613`
-* Configure `kubectl` to use the sandbox Kubernetes cluster
-  * `gcloud container clusters get-credentials sandbox-v3 --zone us-central1-f --project pg-sandbox-165613`
 
 What it sets up
 ---------------
