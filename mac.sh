@@ -253,6 +253,7 @@ cask_install_or_upgrade 'xquartz'
 cask_install_or_upgrade 'sublime-text'
 cask_install_or_upgrade 'aws-vault'
 cask_install_or_upgrade 'skitch'
+cask_install_or_upgrade 'trailer'
 install_shift_it
 install_latest_ruby
 install_vim_config
