@@ -151,7 +151,6 @@ install_latest_ruby() {
   gem update --system
 
   gem_install_or_update 'bundler'
-  gem_install_or_update 'aptible-cli'
 
   fancy_echo "Configuring Bundler ..."
   number_of_cores=$(sysctl -n hw.ncpu)
@@ -167,8 +166,8 @@ install_vim_config() {
       echo "Saving old vim config to ~/.vim.old"
       cp -r ~/.vim ~/.vim.old
     fi
-    echo "Downloading and installing policygenius/vim-config..."
-    git clone https://github.com/policygenius/vim-config.git ~/.vim
+    echo "Downloading and installing j-clark/vim-config..."
+    git clone https://github.com/j-clark/vim-config.git ~/.vim
     ~/.vim/bin/install
   fi
 }
@@ -190,12 +189,6 @@ install_oh_my_zsh() {
   if [ ! -d ~/.oh-my-zsh/zsh-syntax-highlighting ]; then
     cd ~/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
   fi
-}
-
-install_elasticsearch() {
-  cask_install_or_upgrade 'java'
-  brew_install_or_upgrade 'elasticsearch@2.4'
-  brew services start elasticsearch@2.4
 }
 
 ##### Start Installation #####
@@ -231,8 +224,8 @@ brew_install_or_upgrade 'ctags'
 brew_install_or_upgrade 'tmux'
 brew_install_or_upgrade 'reattach-to-user-namespace'
 brew_install_or_upgrade 'imagemagick'
-brew_install_or_upgrade 'qt55'
-brew link --force qt55
+brew_install_or_upgrade 'qt'
+brew link --force qt
 brew_install_or_upgrade 'fswatch'
 brew_install_or_upgrade 'unison'
 brew_install_or_upgrade 'yarn'
@@ -248,17 +241,19 @@ brew_install_or_upgrade 'git-pair'
 brew_install_or_upgrade 'openssl'
 brew unlink openssl && brew link openssl --force
 brew_install_or_upgrade 'libyaml'
-brew_install_or_upgrade 'chromedriver'
 brew_install_or_upgrade 'httpie'
+brew_install_or_upgrade 'awscli'
 
 # Install applications
+cask_install_or_upgrade 'chromedriver'
 cask_install_or_upgrade 'macvim'
 cask_install_or_upgrade 'iterm2'
 cask_install_or_upgrade 'slack'
 cask_install_or_upgrade 'xquartz'
 cask_install_or_upgrade 'sublime-text'
+cask_install_or_upgrade 'aws-vault'
+cask_install_or_upgrade 'skitch'
 install_shift_it
-install_elasticsearch
 install_latest_ruby
 install_vim_config
 
