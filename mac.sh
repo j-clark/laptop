@@ -243,6 +243,7 @@ brew unlink openssl && brew link openssl --force
 brew_install_or_upgrade 'libyaml'
 brew_install_or_upgrade 'httpie'
 brew_install_or_upgrade 'awscli'
+brew_install_or_upgrade 'autojump'
 
 # Install applications
 cask_install_or_upgrade 'chromedriver'
