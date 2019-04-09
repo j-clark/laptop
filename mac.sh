@@ -244,6 +244,7 @@ brew_install_or_upgrade 'libyaml'
 brew_install_or_upgrade 'httpie'
 brew_install_or_upgrade 'awscli'
 brew_install_or_upgrade 'autojump'
+brew_install_or_upgrade 'fzf'
 
 # Install applications
 cask_install_or_upgrade 'chromedriver'
